@@ -1,175 +1,158 @@
-# Client Knowledge Assistant
+# Source — Client Knowledge Assistant
 
-A small RAG app that answers questions using three public Automattic documents and shows the document, section and supporting passage. Gemini is used for one-time semantic chunking and for answers. Streamlit is the deployed UI; FastAPI exposes the same logic locally.
+A small React chat app that answers questions from three public Automattic documents, shows its supporting passages, and says “I don’t know” when the documents lack an answer.
 
-**Current status:** the code and offline checks are complete, but this checkout is **not submission-ready yet**. The development environment blocks both the Gemini API and Hugging Face downloads. No Gemini-generated chunks or live answers have been fabricated. Run the preparation and evaluation commands below from a network that can reach both services before deploying or submitting.
+**[Try the demo](https://e-bibil-assistant.vercel.app)** · [Read the code](https://github.com/mitul-bhatia/E-Bibil_assignment)
+
+![Dark chat interface with sample questions and a document library](public/demo-desktop.png)
 
 ## Run locally
 
-Use Python **3.12**, a Gemini API key on a free-tier project, and internet access to Google and Hugging Face. The CPU-only PyTorch dependency keeps the deployment smaller than a CUDA installation. The first model download and dependency installation can take several minutes.
+Use Node.js 22 or newer and a Gemini API key from [Google AI Studio](https://aistudio.google.com/apikey).
 
 ```bash
 git clone https://github.com/mitul-bhatia/E-Bibil_assignment.git
 cd E-Bibil_assignment
-python -m venv .venv
+npm ci
+cp .env.example .env.local
 ```
 
-Activate the environment:
+Set `GEMINI_API_KEY` in `.env.local`, then:
 
 ```bash
-# macOS / Linux
-source .venv/bin/activate
-
-# Windows PowerShell
-.venv\Scripts\Activate.ps1
+npm run dev
 ```
 
-```bash
-python -m pip install -r requirements.txt
+Open http://localhost:3000. The repo contains the prepared document vectors; ordinary startup does not re-embed documents. A question still needs one Google embedding request and one answer request.
+
+The default answer model is `gemini-3.5-flash-lite`. Google lists a [free tier](https://ai.google.dev/gemini-api/docs/pricing); actual access and quotas depend on your project. Keep the API key in `.env.local` locally and in Vercel environment variables when deployed. It is never a `NEXT_PUBLIC_` variable.
+
+## Architecture
+
+Next.js provides both the React interface and one server endpoint. A JSON file holds the vector index. There is no separate backend deployment or database service.
+
+```mermaid
+flowchart TD
+  subgraph Once[Prepare once, locally]
+    A[Original Markdown documents] --> B[Split by heading and size]
+    B --> C[Google document embeddings]
+    C --> D[Save data/index.json]
+  end
+  subgraph Runtime[For each question]
+    E[React question box] --> F[POST /api/ask]
+    F --> G[Google question embedding]
+    G --> H[Cosine search: top 4 passages]
+    D --> H
+    H --> I[Gemini answers using only these passages]
+    I --> J[Check citation IDs]
+    J --> K[Answer and expandable sources]
+  end
 ```
 
-Copy `.env.example` to `.env` and set `GEMINI_API_KEY`. Keep the key out of Git. A key shared publicly or in a chat should be rotated before deployment. The model names are environment settings; defaults use `gemini-3.8-flash`. Google currently lists a free tier for this model, but model access and quotas depend on your project: [pricing](https://ai.google.dev/gemini-api/docs/pricing).
+Start reading the code in this order:
 
-Prepare the dataset **once**:
-
-```bash
-python prepare_chunks.py
-```
-
-This writes `data/chunks.json`. It may make one corrective request per document if the first boundary proposal is invalid. Validated proposals are cached in the ignored `data/chunking-proposals/` directory so restarting preparation does not repeat successful requests. If preparation fails, it stops without substituting non-Gemini chunks or replacing an existing dataset. Delete that cache if you intentionally want Gemini to make new boundary choices.
-
-```bash
-streamlit run app.py
-```
-
-Open the displayed local URL. Example: **How long does a deleted WordPress.com post stay in Trash?**
-
-For the optional local API, open another terminal with the same environment:
-
-```bash
-uvicorn api:app --reload
-```
-
-Open `http://127.0.0.1:8000/docs` and try `POST /ask` with:
-
-```json
-{"question": "Approximately how long are website visitor web server logs kept?"}
-```
-
-`GET /health` checks whether the API process is alive; it does not test Google access or dataset readiness.
-
-## Architecture and code map
-
-```text
-Original Markdown → Gemini boundary choices → validated saved chunks
-
-Streamlit ─┐
-           ├→ local embeddings → cosine retrieval → Gemini → answer and sources
-FastAPI ───┘
-```
-
-| File | Responsibility |
+| File | What it does |
 | --- | --- |
-| `settings.py` | Paths, model names and chunk/retrieval settings |
-| `documents.py` | Original text, Markdown headings, numbered source passages and validation |
-| `prepare_chunks.py` | Give each complete document to Gemini and save source-preserving chunks |
-| `retrieval.py` | Load chunks, embed them once and retrieve the four nearest chunks |
-| `gemini.py` | Shared JSON API call and readable provider errors |
-| `answers.py` | Grounded prompt and citation ID validation |
-| `app.py` | Question box, answer, source links and expandable evidence |
-| `api.py` | Thin local FastAPI wrapper |
-| `evaluate.py` | Run the ten questions and record real results |
+| `lib/rag.js` | Embed the question, search, answer, and resolve sources |
+| `lib/gemini.js` | Two Google HTTP calls with readable errors and one retry |
+| `app/api/ask/route.js` | Validate the question and call `ask()` |
+| `app/Chat.jsx` | Chat interface, examples, answer and source display |
+| `lib/chunk.js` | Split Markdown into source-preserving passages |
+| `scripts/prepare.mjs` | Generate and save the document vectors once |
+| `scripts/evaluate.mjs` | Run the ten questions and save actual results |
 
-There is no vector database, agent framework, web search or conversation history. The chunking helper is a single-purpose LLM step, not a multi-agent system.
+## Documents and sources
 
-## Documents
+The knowledge set is the original Automattic Markdown snapshot from [legalmattic revision 99aa482](https://github.com/Automattic/legalmattic/tree/99aa482bf6b602645bcb50c47a68db48a76dbce0), captured on 9 October 2026.
 
-I selected Automattic because its official public repository provides reusable Markdown documents, saving PDF extraction work and providing clear section citations. The organisation operates WordPress.com and other products; answers must preserve each policy's product scope.
-
-The three original files are unchanged, from [Automattic/legalmattic revision `99aa482`](https://github.com/Automattic/legalmattic/tree/99aa482bf6b602645bcb50c47a68db48a76dbce0), downloaded October 9, 2026:
-
-| Local file | Coverage |
+| Document | Coverage |
 | --- | --- |
-| `documents/terms-of-service.md` | Account rules, payments, renewal, general refund conditions and termination |
-| `documents/privacy-policy.md` | Data collection, retention, privacy rights and security |
-| `documents/cookie-policy.md` | Cookie purposes and visitor controls |
+| Terms of Service | Accounts, age requirements, payments, subscriptions and refunds |
+| Privacy Policy | Collection, retention, privacy rights and security |
+| Cookie Policy | Cookie purposes and visitor controls |
 
-`data/sources.json` records exact source URLs, repository revision and SHA-256 hashes. These documents are by **Automattic**, under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/); their full licence is in `documents/LICENSE.txt`. Only the three Markdown documents are indexed. Links inside them, the licence and the source manifest are not additional knowledge sources.
+`data/sources.json` records original URLs, revision and SHA-256 hashes. Documents are by Automattic under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/); the licence is included in `documents/LICENSE.txt`. Linked pages are not indexed. These are Markdown documents, so citations show a document and section rather than a PDF page.
 
-## Chunking and retrieval choices
+## Chunking and retrieval
 
-Gemini receives **each complete document**, with numbered source passages and section labels. It chooses the final semantic boundaries across that document. Paragraphs are numbered without alteration; oversized paragraphs are divided into smaller units, preferring sentence boundaries. This numbering makes Gemini's choices checkable rather than asking it to reproduce thousands of words accurately.
+Chunking is deterministic: recognize Markdown headings, split long sections at paragraph or word boundaries, cap passages at 1,800 characters, and overlap up to 200 characters inside the same section. This preserves nearby context without asking an LLM to preprocess the documents. Passages are exact slices of the original text.
 
-Gemini returns a list of ending passage IDs. Python assembles the original source slices and validates ordered, complete coverage, section boundaries and token size. Short sections can remain together. The target is **200 MiniLM tokens including title and section**, with up to **30 tokens of overlap** between consecutive chunks in the same section. Overlap is reduced if it would exceed MiniLM's 256-token input limit; two positions are reserved for special tokens. Core ranges reconstruct the entire original document, and every displayed excerpt must exactly match its source range.
+The prepared index has **142 passages** and **768-dimensional `gemini-embedding-2` vectors**. Document embeddings include their title and section. Question embeddings use the question-answering task prefix documented by [Google](https://ai.google.dev/gemini-api/docs/embeddings).
 
-The prepared file records the model, date, document hashes, boundary choices, attempt counts and per-chunk token counts. Saving it makes runtime reproducible even though a new LLM preparation run may choose different boundaries. There is no silent deterministic fallback: this version requires validated Gemini choices, as requested.
+Both vectors are normalized, so their dot product is cosine similarity. Sort the scores and take the top four. For this small corpus, a direct scan is easy to inspect and requires no FAISS installation or hosted vector database. Scores rank evidence; they are not confidence percentages or an answerability threshold.
 
-`all-MiniLM-L6-v2` produces local, normalized embeddings. Cosine similarity ranks chunks by meaning; the four highest-ranked passages become the answer context. Title and section are included in embedding text to preserve context. This is small enough for an in-memory array. A similarity score is **not** treated as proof that a question is answerable; the answer model must check whether the retrieved text supplies the requested facts.
+The answer prompt allows only retrieved evidence, preserves product scope and exceptions, and asks the model to abstain when evidence is missing. Citation IDs must belong to the retrieved passages; titles, URLs and excerpts come from saved metadata. Valid IDs alone do not prove factual support, so answers also need evaluation against the original passages.
 
-The answer prompt forbids prior knowledge and following linked pages, preserves exceptions and product scope, and requests an explicit abstention when evidence is insufficient. Citation IDs must belong to the retrieved passages. Source titles, URLs and excerpts come from our saved metadata, not model-created URLs. These checks reject invalid references; they do not prove that every model claim is supported, so the evaluation also checks the cited text.
-
-## Evaluation and actual results
-
-The fixed set is `data/eval_questions.json`, with eight answerable questions and two unanswerable questions. Expected answers and expected sections were checked against the original files.
+To regenerate the index after changing documents:
 
 ```bash
-python evaluate.py
+npm run prepare:index
 ```
 
-This saves actual answers, retrieved IDs, sources, retrieval hits, citation matches and answerability matches in `data/eval_results.json`. It pauses between questions to reduce quota errors; adjust with `--pause 20` if your project's limit is lower. Review each actual answer against `expected_answer`, then set `human_verdict` to `pass` or `fail` and explain misses in `review_notes`. Automated citation matches alone are not a factual-correctness score.
+The script verifies source hashes, saves completed embeddings in an ignored cache, and replaces the index only after every document succeeds. Update the manifest when intentionally changing a source. Preparation is not part of the Vercel build.
 
-**Recorded development run:** 0/10 live answers completed. All ten are blocked because a genuine Gemini dataset could not be prepared here. No accuracy percentage is reported.
+## Demo and evaluation
 
-| ID | Question summary | Expected answer | Actual result |
+Sample questions are stored in `data/examples.json` and shipped with the app. Click one to submit it. Each turn is an independent question; previous chat messages are not sent to the model.
+
+![Real answer with its supporting Privacy Policy passage](public/demo-answer.png)
+
+The assessment test set is `data/eval_questions.json`: eight answerable questions and two unanswerable questions. Expected answers are never used by the RAG backend.
+
+```bash
+npm run evaluate
+```
+
+Actual answers, citations, answerability checks, timing and review notes are saved in `data/eval_results.json`. The script waits 15 seconds between questions to reduce quota failures. Automated section matches are not an accuracy score; review `actual_answer` against `expected_answer` and the cited passage.
+
+**Recorded live run:** 10/10 questions completed with `gemini-3.5-flash-lite`. Codex-assisted review marked 9 pass and 1 fail against the expected answers and actual cited passages. Both unanswerable questions correctly abstained. This describes this small test set, not general accuracy; the applicant should also review the results.
+
+| ID | Question | Expected key facts | Actual result / review |
 | --- | --- | --- | --- |
-| Q1 | Minimum age, including Europe | 13; 16 in Europe; guardian supervision below age of majority | Blocked — live run pending |
-| Q2 | Cancellation deadline before renewal | One month for annual subscriptions; 24 hours for shorter periods | Blocked — live run pending |
-| Q3 | Renewal after a promotional discount | Full price after the promotion ends | Blocked — live run pending |
-| Q4 | Refund for a payment to an independent site owner | Contact that website owner | Blocked — live run pending |
-| Q5 | Refund guarantee for every paid service | No; applicable policies and legal requirements are exceptions | Blocked — live run pending |
-| Q6 | Visitor web server log retention | Approximately 30 days | Blocked — live run pending |
-| Q7 | Deleted post: Trash and backups | 30 days in Trash; backups/caches may retain it until purged | Blocked — live run pending |
-| Q8 | Disabling cookies | Possible through browser controls; some features may stop working correctly | Blocked — live run pending |
-| Q9 | Exact arrival date of my pending refund | I don't know based on the provided documents | Blocked — live run pending |
-| Q10 | Exact current Business plan price in INR | I don't know based on the provided documents | Blocked — live run pending |
+| Q1 | Minimum age and Europe | 13; 16 in Europe; guardian supervision below majority | Correct ages, omitted supervision — fail |
+| Q2 | Cancellation before renewal | One month annual; 24 hours shorter periods | Both deadlines correct — pass |
+| Q3 | Promotional renewal price | Full price after the discount | Correct — pass |
+| Q4 | Independent website refund | Contact the website owner | Correct — pass |
+| Q5 | Refund guarantee | No blanket guarantee; policy and legal exceptions | Correct — pass |
+| Q6 | Visitor log retention | Approximately 30 days | Correct — pass |
+| Q7 | Deleted posts and backups | 30 days in Trash; backups may remain until purged | Both facts correct — pass |
+| Q8 | Browser cookies and features | Can reject cookies; some features may fail | Correct with a valid Privacy Policy citation — pass |
+| Q9 | My refund arrival date | Documents cannot answer | Correct abstention — pass |
+| Q10 | Current Business price in INR | Documents cannot answer | Correct abstention — pass |
 
-For offline engineering checks:
+Q1 is a generation completeness miss: retrieval found the full age section, including the supervision condition. A next improvement is to include all relevant policy qualifications while keeping answers short. Q8 exposes a limitation of the automated evaluation: the Privacy Policy also states the cookie rule, so an expected-document match can flag a valid citation as a miss. Review notes explain both cases.
+
+An earlier `gemini-3.8-flash` run completed only 4/10 questions because of provider/quota failures; its unchanged report is saved in `data/eval_previous.json`. Flash-Lite was selected after a live abstention test returned in about 2.5 seconds, then the entire same test set was rerun. No expected answers are substituted for model outputs.
+
+![Real unanswerable response in the mobile interface](public/demo-unknown.png)
+
+## Deploy to Vercel
+
+1. Import this repository into Vercel using the Next.js preset.
+2. Add `GEMINI_API_KEY` as an encrypted server environment variable. Optionally set `GEMINI_MODEL`.
+3. Deploy. The committed `data/index.json` is included with the server endpoint.
+4. Try an answerable question and “Try an unknown” from the deployed sidebar.
+
+`npm run build` builds both the UI and endpoint. No Python, PyTorch, model download or separate service is needed on Vercel.
+
+## Checks, limits and next steps
 
 ```bash
-python -m pip install -r requirements-dev.txt
-python -m pytest -q
+npm test
+npm run build
 ```
 
-**Verified here: 20 offline tests passed; dependency checks passed.** These test source preservation, complete-document Gemini prompts, invalid boundaries, overlap, citation validation, API errors and UI rendering. Their tokenizer and answer fixtures are explicitly test doubles; they do **not** establish real retrieval quality or Gemini answer accuracy.
+Five offline tests check source-preserving chunking, overlap, cosine ranking, citation restrictions and API input validation. They do not establish live model accuracy.
 
-## Deploy on Streamlit Community Cloud
-
-First run preparation and evaluation locally, inspect the results, and commit `data/chunks.json` plus the reviewed evaluation results to the public repository. `.env` and `.streamlit/secrets.toml` are ignored and must not be committed.
-
-1. At [share.streamlit.io](https://share.streamlit.io/), create an app from the public repository, branch `main`, entrypoint `app.py`.
-2. Select Python **3.12** in Advanced settings.
-3. Add these top-level settings in **Secrets**, replacing only the key with your rotated key:
-
-   ```toml
-   GEMINI_API_KEY = "your-key"
-   GEMINI_MODEL = "gemini-3.8-flash"
-   ```
-
-4. Deploy. The embedding model downloads on the first start; later questions reuse the in-memory index. No document chunking runs on the hosted app.
-5. Verify one answerable question and one unanswerable question at the deployed URL. If deployment fails, capture a 2–3 minute local demonstration instead, after the real evaluation runs.
-
-Streamlit calls the shared Python RAG functions directly on Community Cloud. FastAPI remains a local demonstration interface. Hosting a separate public API is outside this prototype's scope. See Streamlit's [deployment](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/deploy) and [secrets](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/secrets-management) instructions.
-
-## Limits and next steps
-
-- Complete genuine preprocessing, evaluation and the hosted demo; these remain blocked in the current development environment.
-- Semantic chunking does not guarantee optimal retrieval, and local MiniLM can miss paraphrases or evidence spread across more than four chunks. Inspect misses before changing retrieval settings.
-- The policies are a fixed snapshot, not a live source of current prices or account-specific information. Updating documents requires updating their manifest and regenerating chunks.
-- Gemini can still make unsupported claims despite the prompt and valid citation IDs. Add claim-level verification only if the evaluation shows it is necessary.
-- Free-tier limits, cold starts and external model downloads affect availability. Errors are shown separately from document-based abstention. This public demo has no authentication or per-user quota controls.
+- Policies are a fixed snapshot, not current prices or private account data.
+- Top-four retrieval can miss evidence or conditions spread across passages.
+- Gemini can still make an unsupported claim with a valid source ID; read the excerpt.
+- Google quota and service failures affect availability. The backend retries a transient error once, then shows an error rather than a document-based abstention.
+- This public assessment demo has no login, uploads or per-user quota controls. Add those only if expanding beyond a small demo.
+- Next steps: inspect evaluation misses, improve retrieval only where needed, and test more paraphrases and multi-part questions.
 
 ## AI tools and time spent
 
-OpenAI Codex assisted with document research, implementation, tests and this README. Gemini is the implemented tool for one-time boundary selection and runtime answers; **no successful Gemini request has been made from this development environment**, so it is not described as having already produced the dataset.
+OpenAI Codex assisted with document research, the original Python prototype, this JavaScript simplification, UI, tests and deployment. Google Gemini Embedding 2 generated the saved document vectors; Gemini Flash produces runtime answers. The applicant should understand and be able to change each part during the interview.
 
-Work began around **16:16 IST on October 9, 2026**, including document research and design discussion. At **17:04 IST**, elapsed time was approximately **48 minutes**: 31 minutes for research/discussion and 17 minutes for implementation/validation. These are elapsed development-session estimates, not a claim about the applicant’s independent time. The four-hour budget includes research, preprocessing, evaluation and deployment; record any remaining work and stop by **20:16 IST** if using this start time. The submission deadline should be confirmed from the original email rather than inferred from the PDF's date.
+The original session began around 16:16 IST on 9 October 2026. The original README recorded 48 minutes at 17:04 IST. This migration and live validation continued in the same assessment session; record the final elapsed time after deployment. The assessment’s four-hour timebox ends at 20:16 IST if using that start time. These are assisted session estimates, not a claim of independent applicant effort.

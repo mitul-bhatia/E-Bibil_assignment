@@ -1,0 +1,13 @@
+.env*
+.next/
+node_modules/
+.pytest_cache/
+__pycache__/
+.venv/
+.impeccable/
+data/embedding-cache.json
+data/chunking-proposals/
+tests/
+work/
+*.tmp
+*.pyc

@@ -1,0 +1,7 @@
+[
+  {"label":"Subscription renewal","question":"How far in advance must I cancel an Automattic annual subscription or a shorter subscription to avoid automatic renewal?"},
+  {"label":"Deleted posts","question":"How long does a deleted WordPress.com post stay in Trash, and is it immediately removed from backups afterward?"},
+  {"label":"Privacy and retention","question":"Approximately how long does Automattic keep website visitor web server logs?"},
+  {"label":"Cookie controls","question":"Can I disable cookies in my browser, and will all Automattic features still work correctly?"},
+  {"label":"Try an unknown","question":"On what exact date will my pending WordPress.com refund arrive in my bank account?"}
+]

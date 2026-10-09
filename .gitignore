@@ -8,3 +8,12 @@ __pycache__/
 *.pyc
 work/
 data/chunking-proposals/
+node_modules/
+.next/
+.vercel/
+.impeccable/
+data/embedding-cache.json
+*.tmp
+out/
+.vercel
+.env*
