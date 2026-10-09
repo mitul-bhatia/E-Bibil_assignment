@@ -155,4 +155,4 @@ Five offline tests check source-preserving chunking, overlap, cosine ranking, ci
 
 OpenAI Codex assisted with document research, the original Python prototype, this JavaScript simplification, UI, tests and deployment. Google Gemini Embedding 2 generated the saved document vectors; Gemini Flash produces runtime answers. The applicant should understand and be able to change each part during the interview.
 
-The original session began around 16:16 IST on 9 October 2026. The original README recorded 48 minutes at 17:04 IST. This migration and live validation continued in the same assessment session; record the final elapsed time after deployment. The assessment’s four-hour timebox ends at 20:16 IST if using that start time. These are assisted session estimates, not a claim of independent applicant effort.
+Estimated assisted session time: about 1 hour 40 minutes, from approximately 16:16 to 17:56 IST on 9 October 2026. This includes the original prototype review, JavaScript migration, document embeddings, UI, tests and deployment checks. This is a session estimate, not a claim of independent applicant effort.
