@@ -7,7 +7,6 @@ __pycache__/
 .impeccable/
 data/embedding-cache.json
 data/chunking-proposals/
-tests/
 work/
 *.tmp
 *.pyc

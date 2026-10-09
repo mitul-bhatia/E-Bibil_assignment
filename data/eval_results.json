@@ -1,7 +1,8 @@
 {
-  "runAt": "2026-10-09T12:18:36.423Z",
+  "runAt": "2026-10-09T13:01:22.543Z",
+  "url": "https://e-bibil-assistant.vercel.app/",
+  "method": "Questions entered through the deployed browser UI; no local RAG calls or automated test code in the repository.",
   "model": "gemini-3.5-flash-lite",
-  "note": "Answerability and section checks are automated. Review each actual answer against expected_answer; these checks are not an accuracy score.",
   "results": [
     {
       "id": "Q1",
@@ -11,7 +12,9 @@
       "expected_document": "Terms of Service",
       "expected_section": "3. Minimum Age Requirements",
       "status": "completed",
+      "http_status": 200,
       "actual_answer": "The minimum age to use Automattic services is 13, and yes, it is different in Europe, where the minimum age is 16.",
+      "actual_answerable": true,
       "sources": [
         {
           "id": "terms-of-service-7",
@@ -23,17 +26,52 @@
           "score": 0.7805286449357336
         }
       ],
-      "retrieved_ids": [
-        "terms-of-service-7",
-        "terms-of-service-5",
-        "terms-of-service-2",
-        "terms-of-service-66"
+      "retrieved": [
+        {
+          "id": "terms-of-service-7",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "3. Minimum Age Requirements",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "3\\. Minimum Age Requirements\n----------------------------\n\nOur Services are not directed to children. You’re not allowed to access or use our Services if you’re under the age of 13 (or 16 in Europe). If you register as a user or otherwise use our Services, you represent that you’re at least 13 (or 16 in Europe). You may use our Services only if you can legally form a binding contract with us. In other words, if you’re under 18 years of age (or the legal age of majority where you live), you can only use our Services under the supervision of a parent or legal guardian who agrees to the Agreement.\n\n",
+          "score": 0.7805286449357336
+        },
+        {
+          "id": "terms-of-service-5",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "1. Who’s Who",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "1\\. Who’s Who\n-------------\n\n“You” means any individual or entity using our Services. If you use our Services on behalf of another person or entity, you represent and warrant that you’re authorized to accept the Agreement on that person’s or entity’s behalf, that by using our Services you’re accepting the Agreement on behalf of that person or entity, and that if you, or that person or entity, violates the Agreement, you and that person or entity agree to be responsible to us.\n\nPlease see below to determine which entity your Agreement is with, which depends on where you reside and which Services you use. We use the term “Designated Countries” to refer to Australia, Canada, Japan, Mexico, New Zealand, Russia, and all countries located in Europe.\n\n**Automattic Services (except Woo)**\n\n-   If you reside outside of the Designated Countries: Automattic Inc.\n-   If you reside in the Designated Countries: Aut O’Mattic A8C Ireland Ltd.\n\n**Woo Services**\n\n*Woo services includes WooCommerce, WooPayments, WooCommerce Shipping, WooCommerce Tax, MailPoet, and other products or services available at WooCommerce.com. (Please note that for the use of Third-Party Services — as defined below — additional terms may govern).*\n\n-   If you reside outside of the Designated Countries: WooCommerce, Inc.\n-   If you reside in the Designated Countries: WooCommerce Ireland Ltd.\n\nWe refer to Automattic Inc., Aut O’Mattic A8C Ireland Ltd., WooCommerce, Inc., and WooCommerce Ireland Ltd. collectively as “Automattic,” “us,” or “we” throughout these Terms.\n\n",
+          "score": 0.7509818310888319
+        },
+        {
+          "id": "terms-of-service-2",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "The Gist",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "The Gist\n--------\n\nWe (the [folks at Automattic](https://automattic.com/about/)) are on a mission to make the web a better place. We hope you love our products and services — from website publishing tools to ecommerce solutions to security backup systems to management tools for distributed companies to the next great idea that we haven’t even thought of yet — as much as we love creating them.\n\nThese Terms of Service (”Terms”) describe our commitments to you, and your rights and responsibilities when using our services. Please read them carefully and reach out to us if you have any questions.** If you don’t agree to these Terms, don’t use our services.**\n\nIf you are a user in countries located in the European Economic Area, Switzerland, or the United Kingdom (“European User”), some special terms apply to you as mentioned below.**\\\n**\n\nWe’ve made these Terms available under a [Creative Commons Sharealike license](https://creativecommons.org/licenses/by-sa/4.0/), which means that you’re more than welcome to copy them, adapt them, and repurpose them for your own use. Just make sure to revise them so that your Terms of Service reflect your actual practices. Also, if you do use these Terms, we’d appreciate a credit and link to Automattic somewhere on your website. You can grab a copy of these Terms and other legal documents on [GitHub](https://github.com/Automattic/legalmattic).\n\n",
+          "score": 0.7404527667109381
+        },
+        {
+          "id": "terms-of-service-66",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "16. Limitation of Liability",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "hichever is greater. Automattic shall have no liability for any failure or delay due to matters beyond its reasonable control. The foregoing shall not apply to the extent prohibited by applicable law.\n\nEuropean Users: If we cause damage to you and you are a consumer in Europe, we limit our liability to the maximum amount permissible in your country of residence. Liability will be limited to foreseeable damages arising due to a breach of material contractual obligations typical for this type of contract. Automattic isn’t liable for damages that result from a non-material breach of any other applicable duty of care. This limitation of liability will not apply to any statutory liability that cannot be limited, to liability for death or personal injury caused by our negligence, liability caused by our willful misconduct or gross negligence, or our responsibility for something we have specifically promised to you. You and we agree that we and our affiliates’ total liability is limited to the greater of $50 or the amount paid by you to use our Services during the 12 months preceding the claim; To the extent that our liability is limited or excluded, the limitations or exclusions will also apply to the personal liability of our employees, legal representatives, and vicarious agents.\n\n",
+          "score": 0.7342131452388133
+        }
       ],
-      "answerability_match": true,
-      "citation_match": true,
-      "elapsed_ms": 1922,
+      "elapsed_ms": 1152,
       "review_verdict": "fail",
-      "review_notes": "Age thresholds are correct, but the expected answer also includes parental/legal guardian supervision below the local age of majority. The cited passage contains this condition; the generated answer omits it."
+      "answerVisibleInUI": true,
+      "answerability_match": true,
+      "sourcesMatchSavedIndex": true,
+      "fourRetrievedPassages": true,
+      "noVectorsSentToBrowser": true,
+      "review_notes": "The retrieved age section contains the guardian-supervision condition, but the answer omits it. Correct ages; incomplete against the expected answer."
     },
     {
       "id": "Q2",
@@ -43,7 +81,9 @@
       "expected_document": "Terms of Service",
       "expected_section": "a. Automattic Fees",
       "status": "completed",
-      "actual_answer": "You must cancel at least one month before the scheduled end date of an annual subscription and at least 24 hours before the end of any shorter subscription period.",
+      "http_status": 200,
+      "actual_answer": "You must cancel at least one month before the scheduled end date of any annual subscription and at least 24 hours before the end of any shorter subscription period.",
+      "actual_answerable": true,
       "sources": [
         {
           "id": "terms-of-service-13",
@@ -55,17 +95,52 @@
           "score": 0.7725590725872005
         }
       ],
-      "retrieved_ids": [
-        "terms-of-service-13",
-        "terms-of-service-15",
-        "terms-of-service-14",
-        "terms-of-service-62"
+      "retrieved": [
+        {
+          "id": "terms-of-service-13",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "5. Fees, Payment, and Renewal → a. Automattic Fees",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "ed on your billing country. If we offer a market-specific price in a particular country or region, that price applies only for the applicable promotional period or for as long as we make it available.\n\n**Automatic Renewal. **By enrolling in a subscription, you authorize us to automatically charge the then-applicable fees and Taxes for each subsequent subscription period until the subscription is canceled. If you received a discount, used a coupon code, or subscribed during a free trial or promotion, your subscription will automatically renew for the full price of the subscription at the end of the discount period. This means that unless you cancel a subscription, it’ll automatically renew and we’ll charge your payment method(s). You must cancel at least one month before the scheduled end date of any annual subscription and at least 24 hours before the end of any shorter subscription period. The date for the automatic renewal is based on the date of the original purchase and cannot be changed. If you’ve purchased access to multiple services, you may have multiple renewal dates.\n\nYou can view your renewal date(s), cancel, or manage subscriptions in your settings (for example, [WordPress.com’s Manage Purchases page](https://wordpress.com/me/purchases) or [Woo’s My Subscriptions page](http://woocommerce.com/my-account/my-subscriptions/)) or by contacting the support team.\n\n**Fees and Changes.** We may change our fees at any time in accordance with these Terms and requirements under applicable law. This means that we may change our fees going forward, start charging fees for Services that were previously free, or remove or update features or functionality that were previously included in the fees. If you don’t agree with the changes, you must cancel your Paid Service.",
+          "score": 0.7725590725872005
+        },
+        {
+          "id": "terms-of-service-15",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "5. Fees, Payment, and Renewal → a. Automattic Fees",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "ns as permitted by law. For digital content, you agree that any purchase of digital content will be made available to you immediately and as a result you waive any right of withdrawal to such content.\n\nIf you cancel this contract, we will reimburse you all payments we have received from you, including delivery costs (with the exception of additional costs resulting from the fact that you have chosen a type of delivery other than the most favorable standard delivery offered by us), without undue delay and no later than within fourteen days from the day on which we received the notification of your cancellation of this contract. For this repayment, we will use the same means of payment that you used for the original transaction, unless expressly agreed otherwise with you; you will not be charged for this repayment. If we have already begun our services during the withdrawal period, you will pay us a prorated amount corresponding to the services already provided up to the time you notify us of the exercise of the withdrawal right compared to the total scope of the services provided for in the contract. If you cancel your contract with us, you will refrain from using the digital content or digital services or making them available to third parties.\n\nYou may exercise your right to withdrawal by sending a clear, written request to: Aut O’Mattic A8C Ireland Ltd., Grand Canal Dock, 25 Herbert Pl, Dublin, D02 AY86 Ireland or by using [this model form](https://wordpress.com/support/right-to-withdrawal/).\n\n",
+          "score": 0.7329287479232361
+        },
+        {
+          "id": "terms-of-service-14",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "5. Fees, Payment, and Renewal → a. Automattic Fees",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "for Services that were previously free, or remove or update features or functionality that were previously included in the fees. If you don’t agree with the changes, you must cancel your Paid Service.\n\n**Refunds.** We may have a refund policy for some of our Paid Services, and we’ll also provide refunds if required by law. In all other cases, there are no refunds and all payments are final.\n\nWe may have a “no-show policy” for some Paid Services that require your participation. This means that if you don’t show up for, don’t participate in, or are late for a scheduled session, you’ll still be charged for the Paid Service and won’t be entitled to a refund.\n\n*European Users:* \n\nYou have the right to withdraw from the transaction within fourteen (14) days from the date of the purchase without giving any reason as long as your purchase was not of downloadable content or of a customized nature, and (i) the service has not been fully performed, or (ii) subject to other limitations as permitted by law. For digital content, you agree that any purchase of digital content will be made available to you immediately and as a result you waive any right of withdrawal to such content.",
+          "score": 0.7153524887573035
+        },
+        {
+          "id": "terms-of-service-62",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "13. Termination",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "13\\. Termination\n----------------\n\nWe may terminate your access to all or any part of our Services at any time, with or without cause or notice, effective immediately, including if we believe, in our sole discretion, that you have violated this Agreement, any service guidelines, or other applicable terms. We have the right (though not the obligation) to (i) reclaim your username or website’s URL due to prolonged inactivity, (ii) refuse or remove any content that, in our reasonable opinion, violates any part of this Agreement or any Automattic policy, or is in any way harmful or objectionable, (iii) ask you to make adjustments, restrict the resources your website uses, or terminate your access to the Services, if we believe your website’s storage or bandwidth usage burdens our systems (which is rare and typically only occurs when a website is used for file sharing or storage), or (iv) terminate or deny access to and use of any of our Services to any individual or entity for any reason. We will have no obligation to provide a refund of any fees previously paid.\n\nYou can stop using our Services at any time, or, if you use a Paid Service, you can cancel at any time, subject to the Fees, Payment, and Renewal section of these Terms.\n\n",
+          "score": 0.7028607520202571
+        }
       ],
-      "answerability_match": true,
-      "citation_match": true,
-      "elapsed_ms": 1828,
+      "elapsed_ms": 1421,
       "review_verdict": "pass",
-      "review_notes": "Answers the requested facts and the cited passage supports them."
+      "answerVisibleInUI": true,
+      "answerability_match": true,
+      "sourcesMatchSavedIndex": true,
+      "fourRetrievedPassages": true,
+      "noVectorsSentToBrowser": true,
+      "review_notes": "The cited subscription section supports both cancellation deadlines."
     },
     {
       "id": "Q3",
@@ -75,7 +150,9 @@
       "expected_document": "Terms of Service",
       "expected_section": "a. Automattic Fees",
       "status": "completed",
+      "http_status": 200,
       "actual_answer": "No, if you received a discount, used a coupon code, or subscribed during a free trial or promotion, your subscription will automatically renew for the full price of the subscription at the end of the discount period.",
+      "actual_answerable": true,
       "sources": [
         {
           "id": "terms-of-service-13",
@@ -87,17 +164,52 @@
           "score": 0.7603537371038975
         }
       ],
-      "retrieved_ids": [
-        "terms-of-service-13",
-        "terms-of-service-11",
-        "terms-of-service-12",
-        "terms-of-service-15"
+      "retrieved": [
+        {
+          "id": "terms-of-service-13",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "5. Fees, Payment, and Renewal → a. Automattic Fees",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "ed on your billing country. If we offer a market-specific price in a particular country or region, that price applies only for the applicable promotional period or for as long as we make it available.\n\n**Automatic Renewal. **By enrolling in a subscription, you authorize us to automatically charge the then-applicable fees and Taxes for each subsequent subscription period until the subscription is canceled. If you received a discount, used a coupon code, or subscribed during a free trial or promotion, your subscription will automatically renew for the full price of the subscription at the end of the discount period. This means that unless you cancel a subscription, it’ll automatically renew and we’ll charge your payment method(s). You must cancel at least one month before the scheduled end date of any annual subscription and at least 24 hours before the end of any shorter subscription period. The date for the automatic renewal is based on the date of the original purchase and cannot be changed. If you’ve purchased access to multiple services, you may have multiple renewal dates.\n\nYou can view your renewal date(s), cancel, or manage subscriptions in your settings (for example, [WordPress.com’s Manage Purchases page](https://wordpress.com/me/purchases) or [Woo’s My Subscriptions page](http://woocommerce.com/my-account/my-subscriptions/)) or by contacting the support team.\n\n**Fees and Changes.** We may change our fees at any time in accordance with these Terms and requirements under applicable law. This means that we may change our fees going forward, start charging fees for Services that were previously free, or remove or update features or functionality that were previously included in the fees. If you don’t agree with the changes, you must cancel your Paid Service.",
+          "score": 0.7603537371038975
+        },
+        {
+          "id": "terms-of-service-11",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "5. Fees, Payment, and Renewal → a. Automattic Fees",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "### a. Automattic Fees\n\n**Fees for Paid Services.** Some of our Services are offered for a fee, like certain [WordPress.com plans](https://wordpress.com/pricing/) or Woo themes or extensions (collectively, “Paid Services”). This section applies to any purchases of Paid Services.\n\nBy using a Paid Service, you agree to pay the specified fees. Depending on the Paid Service, there may be different kinds of fees, like some that are one-time, recurring, revenue-based, usage-based, or based on an advertising campaign budget that you set. For recurring fees (AKA subscriptions), your subscription begins on your purchase date, and we’ll bill or charge you in the automatically-renewing interval (such as monthly, annually, or biennially) you select, on a pre-pay basis until you cancel, which you can do at any time by contacting the relevant support team. For revenue-based fees — such as [fees for the Payments feature](https://wordpress.com/support/wordpress-editor/blocks/payments/#related-fees) — you pay us a percentage of the revenue your website generates. Revenue-based fees are ongoing. Where we invoice you for any Paid Services, you will pay all amounts due within the required time frame.\n\n**Taxes.** To the extent permitted by law, or unless explicitly stated otherwise, all fees do not include applicable federal, provincial, state, local or other governmental sales, value-added, goods and services, harmonized or other taxes, fees, or charges (”Taxes”). You’re responsible for paying all applicable Taxes relating to your use of our Services, your payments, or your purchases. If we’re obligated to pay or collect Taxes on the fees you’ve paid or will pay, you’re responsible for those Taxes, and we may collect payment from you.",
+          "score": 0.707627732316676
+        },
+        {
+          "id": "terms-of-service-12",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "5. Fees, Payment, and Renewal → a. Automattic Fees",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "our Services, your payments, or your purchases. If we’re obligated to pay or collect Taxes on the fees you’ve paid or will pay, you’re responsible for those Taxes, and we may collect payment from you.\n\n**Payment.** You must provide accurate and up-to-date payment information. By providing your payment information, you authorize us to store it until you request deletion. If your payment fails, we suspect fraud, or Paid Services are otherwise not paid for or paid for on time (for example, if you contact your bank or credit card company to decline or reverse the charge of fees for Paid Services), we may immediately cancel or revoke your access to Paid Services without notice to you. You authorize us to charge any updated payment information provided by your bank or payment service provider (e.g., new expiration date) or other payment methods provided if we can’t charge your primary payment method.\n\n**Geographic Pricing.** Fees for some Paid Services may vary based on the billing country associated with your payment method. The price shown while browsing is an estimate based on your detected location; your final price is confirmed at checkout based on your billing country. If we offer a market-specific price in a particular country or region, that price applies only for the applicable promotional period or for as long as we make it available.",
+          "score": 0.6919556087495287
+        },
+        {
+          "id": "terms-of-service-15",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "5. Fees, Payment, and Renewal → a. Automattic Fees",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "ns as permitted by law. For digital content, you agree that any purchase of digital content will be made available to you immediately and as a result you waive any right of withdrawal to such content.\n\nIf you cancel this contract, we will reimburse you all payments we have received from you, including delivery costs (with the exception of additional costs resulting from the fact that you have chosen a type of delivery other than the most favorable standard delivery offered by us), without undue delay and no later than within fourteen days from the day on which we received the notification of your cancellation of this contract. For this repayment, we will use the same means of payment that you used for the original transaction, unless expressly agreed otherwise with you; you will not be charged for this repayment. If we have already begun our services during the withdrawal period, you will pay us a prorated amount corresponding to the services already provided up to the time you notify us of the exercise of the withdrawal right compared to the total scope of the services provided for in the contract. If you cancel your contract with us, you will refrain from using the digital content or digital services or making them available to third parties.\n\nYou may exercise your right to withdrawal by sending a clear, written request to: Aut O’Mattic A8C Ireland Ltd., Grand Canal Dock, 25 Herbert Pl, Dublin, D02 AY86 Ireland or by using [this model form](https://wordpress.com/support/right-to-withdrawal/).\n\n",
+          "score": 0.6824541592580095
+        }
       ],
-      "answerability_match": true,
-      "citation_match": true,
-      "elapsed_ms": 2382,
+      "elapsed_ms": 5507,
       "review_verdict": "pass",
-      "review_notes": "Answers the requested facts and the cited passage supports them."
+      "answerVisibleInUI": true,
+      "answerability_match": true,
+      "sourcesMatchSavedIndex": true,
+      "fourRetrievedPassages": true,
+      "noVectorsSentToBrowser": true,
+      "review_notes": "The cited subscription section says promotional subscriptions renew at full price."
     },
     {
       "id": "Q4",
@@ -107,7 +219,9 @@
       "expected_document": "Terms of Service",
       "expected_section": "b. Fees Collected by Website Owners",
       "status": "completed",
-      "actual_answer": "If you would like to request a refund, please contact the website owner.",
+      "http_status": 200,
+      "actual_answer": "You should contact the website owner to request a refund.",
+      "actual_answerable": true,
       "sources": [
         {
           "id": "terms-of-service-16",
@@ -119,17 +233,52 @@
           "score": 0.7975836529168858
         }
       ],
-      "retrieved_ids": [
-        "terms-of-service-16",
-        "terms-of-service-14",
-        "terms-of-service-15",
-        "terms-of-service-42"
+      "retrieved": [
+        {
+          "id": "terms-of-service-16",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "5. Fees, Payment, and Renewal → b. Fees Collected by Website Owners",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "### b. Fees Collected by Website Owners\n\n**Fees Paid to Third-Party Websites or Website Owners.** Website owners can sell items (goods, content, services, etc.), offer subscriptions for their websites at specific price points and intervals, or simply collect payments. We’re not involved in a website’s subscription details or store operations (including the quality, timing, pricing, or legality of what may or may not be included in exchange for payment, or any goods or services purchased). If you buy items or subscriptions from a website, you’re making the purchase directly from the website owner, and they’re solely responsible for the items sold. Please contact the website owner if you have any questions or complaints.\n\n**Automatic Renewal. **Any recurring payments you make to a WordPress.com website owner (like a [website subscription](https://wordpress.com/support/recurring-payments/)) are automatically renewed. This means that unless you or the website owner cancels your website subscription before the end of the subscription period, it’ll automatically renew and your payment method will be charged. For example, if you select an annually renewing website subscription, you’ll be automatically charged once each year until the subscription is canceled. You can view the renewal dates or cancel your website subscriptions on your [Purchases page](https://wordpress.com/me/purchases/other).\n\n**Refunds.** We’re not responsible for refunding fees paid to a website owner because those transactions are between website owners and their users. If you’d like to request a refund, please contact the website owner. If you have a complaint regarding a website owner, you can [contact us](https://en.wordpress.com/abuse/).\n\n",
+          "score": 0.7975836529168858
+        },
+        {
+          "id": "terms-of-service-14",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "5. Fees, Payment, and Renewal → a. Automattic Fees",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "for Services that were previously free, or remove or update features or functionality that were previously included in the fees. If you don’t agree with the changes, you must cancel your Paid Service.\n\n**Refunds.** We may have a refund policy for some of our Paid Services, and we’ll also provide refunds if required by law. In all other cases, there are no refunds and all payments are final.\n\nWe may have a “no-show policy” for some Paid Services that require your participation. This means that if you don’t show up for, don’t participate in, or are late for a scheduled session, you’ll still be charged for the Paid Service and won’t be entitled to a refund.\n\n*European Users:* \n\nYou have the right to withdraw from the transaction within fourteen (14) days from the date of the purchase without giving any reason as long as your purchase was not of downloadable content or of a customized nature, and (i) the service has not been fully performed, or (ii) subject to other limitations as permitted by law. For digital content, you agree that any purchase of digital content will be made available to you immediately and as a result you waive any right of withdrawal to such content.",
+          "score": 0.7213202403681273
+        },
+        {
+          "id": "terms-of-service-15",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "5. Fees, Payment, and Renewal → a. Automattic Fees",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "ns as permitted by law. For digital content, you agree that any purchase of digital content will be made available to you immediately and as a result you waive any right of withdrawal to such content.\n\nIf you cancel this contract, we will reimburse you all payments we have received from you, including delivery costs (with the exception of additional costs resulting from the fact that you have chosen a type of delivery other than the most favorable standard delivery offered by us), without undue delay and no later than within fourteen days from the day on which we received the notification of your cancellation of this contract. For this repayment, we will use the same means of payment that you used for the original transaction, unless expressly agreed otherwise with you; you will not be charged for this repayment. If we have already begun our services during the withdrawal period, you will pay us a prorated amount corresponding to the services already provided up to the time you notify us of the exercise of the withdrawal right compared to the total scope of the services provided for in the contract. If you cancel your contract with us, you will refrain from using the digital content or digital services or making them available to third parties.\n\nYou may exercise your right to withdrawal by sending a clear, written request to: Aut O’Mattic A8C Ireland Ltd., Grand Canal Dock, 25 Herbert Pl, Dublin, D02 AY86 Ireland or by using [this model form](https://wordpress.com/support/right-to-withdrawal/).\n\n",
+          "score": 0.7111332118970477
+        },
+        {
+          "id": "terms-of-service-42",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "8. Specific Service Terms → j. Ecommerce Services",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "e) to your subscribers and customers without notice to you if we determine (in our sole discretion) that your use violates the Agreement, or if a payment processor or regulatory authority requires it.\n\n**Fees and Negative Balances.** In some cases, you pay us fees relating to the Ecommerce Services you use. For example, the fee for the Payments feature is a [percentage](https://wordpress.com/support/wordpress-editor/blocks/payments/#related-fees) (which depends on your plan) of the revenue your website generates through the Payment feature, and when you use the feature, you authorize Stripe to direct payment of that percentage to us. As another example, if you use WooPayments, there are [transaction fees and dispute fees](https://docs.woocommerce.com/document/payments/faq/fees/). Please note that we have no obligation to reimburse or refund these revenue-based fees when you issue refunds to your subscribers or customers.\n\nIf you have a negative account balance (for example because of fraud, chargebacks, or other operational issues) or we’re obligated to pay or collect any fees relating to your ecommerce activities or your use of Ecommerce Services, you’re responsible for those losses and fees, and we may collect payment for those losses and fees.",
+          "score": 0.7102299088518312
+        }
       ],
-      "answerability_match": true,
-      "citation_match": true,
-      "elapsed_ms": 2820,
+      "elapsed_ms": 1149,
       "review_verdict": "pass",
-      "review_notes": "Answers the requested facts and the cited passage supports them."
+      "answerVisibleInUI": true,
+      "answerability_match": true,
+      "sourcesMatchSavedIndex": true,
+      "fourRetrievedPassages": true,
+      "noVectorsSentToBrowser": true,
+      "review_notes": "The cited owner-payment section directs refund requests to the website owner."
     },
     {
       "id": "Q5",
@@ -139,7 +288,9 @@
       "expected_document": "Terms of Service",
       "expected_section": "a. Automattic Fees",
       "status": "completed",
-      "actual_answer": "No, Automattic's terms do not guarantee refunds for every paid service. They may have a refund policy for some Paid Services and provide refunds if required by law, but in all other cases, there are no refunds and all payments are final.",
+      "http_status": 200,
+      "actual_answer": "No, Automattic's terms do not guarantee refunds for every paid service. They may have a refund policy for some paid services and provide refunds if required by law, but in all other cases there are no refunds and all payments are final.",
+      "actual_answerable": true,
       "sources": [
         {
           "id": "terms-of-service-14",
@@ -151,17 +302,52 @@
           "score": 0.8251479373744254
         }
       ],
-      "retrieved_ids": [
-        "terms-of-service-14",
-        "terms-of-service-15",
-        "terms-of-service-62",
-        "terms-of-service-2"
+      "retrieved": [
+        {
+          "id": "terms-of-service-14",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "5. Fees, Payment, and Renewal → a. Automattic Fees",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "for Services that were previously free, or remove or update features or functionality that were previously included in the fees. If you don’t agree with the changes, you must cancel your Paid Service.\n\n**Refunds.** We may have a refund policy for some of our Paid Services, and we’ll also provide refunds if required by law. In all other cases, there are no refunds and all payments are final.\n\nWe may have a “no-show policy” for some Paid Services that require your participation. This means that if you don’t show up for, don’t participate in, or are late for a scheduled session, you’ll still be charged for the Paid Service and won’t be entitled to a refund.\n\n*European Users:* \n\nYou have the right to withdraw from the transaction within fourteen (14) days from the date of the purchase without giving any reason as long as your purchase was not of downloadable content or of a customized nature, and (i) the service has not been fully performed, or (ii) subject to other limitations as permitted by law. For digital content, you agree that any purchase of digital content will be made available to you immediately and as a result you waive any right of withdrawal to such content.",
+          "score": 0.8251479373744254
+        },
+        {
+          "id": "terms-of-service-15",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "5. Fees, Payment, and Renewal → a. Automattic Fees",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "ns as permitted by law. For digital content, you agree that any purchase of digital content will be made available to you immediately and as a result you waive any right of withdrawal to such content.\n\nIf you cancel this contract, we will reimburse you all payments we have received from you, including delivery costs (with the exception of additional costs resulting from the fact that you have chosen a type of delivery other than the most favorable standard delivery offered by us), without undue delay and no later than within fourteen days from the day on which we received the notification of your cancellation of this contract. For this repayment, we will use the same means of payment that you used for the original transaction, unless expressly agreed otherwise with you; you will not be charged for this repayment. If we have already begun our services during the withdrawal period, you will pay us a prorated amount corresponding to the services already provided up to the time you notify us of the exercise of the withdrawal right compared to the total scope of the services provided for in the contract. If you cancel your contract with us, you will refrain from using the digital content or digital services or making them available to third parties.\n\nYou may exercise your right to withdrawal by sending a clear, written request to: Aut O’Mattic A8C Ireland Ltd., Grand Canal Dock, 25 Herbert Pl, Dublin, D02 AY86 Ireland or by using [this model form](https://wordpress.com/support/right-to-withdrawal/).\n\n",
+          "score": 0.7735979914388822
+        },
+        {
+          "id": "terms-of-service-62",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "13. Termination",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "13\\. Termination\n----------------\n\nWe may terminate your access to all or any part of our Services at any time, with or without cause or notice, effective immediately, including if we believe, in our sole discretion, that you have violated this Agreement, any service guidelines, or other applicable terms. We have the right (though not the obligation) to (i) reclaim your username or website’s URL due to prolonged inactivity, (ii) refuse or remove any content that, in our reasonable opinion, violates any part of this Agreement or any Automattic policy, or is in any way harmful or objectionable, (iii) ask you to make adjustments, restrict the resources your website uses, or terminate your access to the Services, if we believe your website’s storage or bandwidth usage burdens our systems (which is rare and typically only occurs when a website is used for file sharing or storage), or (iv) terminate or deny access to and use of any of our Services to any individual or entity for any reason. We will have no obligation to provide a refund of any fees previously paid.\n\nYou can stop using our Services at any time, or, if you use a Paid Service, you can cancel at any time, subject to the Fees, Payment, and Renewal section of these Terms.\n\n",
+          "score": 0.7685279521050649
+        },
+        {
+          "id": "terms-of-service-2",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "The Gist",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "The Gist\n--------\n\nWe (the [folks at Automattic](https://automattic.com/about/)) are on a mission to make the web a better place. We hope you love our products and services — from website publishing tools to ecommerce solutions to security backup systems to management tools for distributed companies to the next great idea that we haven’t even thought of yet — as much as we love creating them.\n\nThese Terms of Service (”Terms”) describe our commitments to you, and your rights and responsibilities when using our services. Please read them carefully and reach out to us if you have any questions.** If you don’t agree to these Terms, don’t use our services.**\n\nIf you are a user in countries located in the European Economic Area, Switzerland, or the United Kingdom (“European User”), some special terms apply to you as mentioned below.**\\\n**\n\nWe’ve made these Terms available under a [Creative Commons Sharealike license](https://creativecommons.org/licenses/by-sa/4.0/), which means that you’re more than welcome to copy them, adapt them, and repurpose them for your own use. Just make sure to revise them so that your Terms of Service reflect your actual practices. Also, if you do use these Terms, we’d appreciate a credit and link to Automattic somewhere on your website. You can grab a copy of these Terms and other legal documents on [GitHub](https://github.com/Automattic/legalmattic).\n\n",
+          "score": 0.7493274940627924
+        }
       ],
-      "answerability_match": true,
-      "citation_match": true,
-      "elapsed_ms": 2493,
+      "elapsed_ms": 1384,
       "review_verdict": "pass",
-      "review_notes": "Answers the requested facts and the cited passage supports them."
+      "answerVisibleInUI": true,
+      "answerability_match": true,
+      "sourcesMatchSavedIndex": true,
+      "fourRetrievedPassages": true,
+      "noVectorsSentToBrowser": true,
+      "review_notes": "The cited refund section supports policy and legal exceptions, with no blanket refund guarantee."
     },
     {
       "id": "Q6",
@@ -171,7 +357,9 @@
       "expected_document": "Privacy Policy",
       "expected_section": "How Long We Keep Information",
       "status": "completed",
+      "http_status": 200,
       "actual_answer": "Automattic keeps web server logs that record information about a website visitor for approximately 30 days.",
+      "actual_answerable": true,
       "sources": [
         {
           "id": "privacy-policy-24",
@@ -183,17 +371,52 @@
           "score": 0.831803276921876
         }
       ],
-      "retrieved_ids": [
-        "privacy-policy-24",
-        "privacy-policy-10",
-        "privacy-policy-2",
-        "privacy-policy-15"
+      "retrieved": [
+        {
+          "id": "privacy-policy-24",
+          "document": "Privacy Policy",
+          "filename": "privacy-policy.md",
+          "section": "Privacy Policy → How Long We Keep Information",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Privacy-Policy.md",
+          "text": "### How Long We Keep Information\n\nWe generally discard information about you when it's no longer needed for the purposes for which we collect and use it — described in the section above on How and Why We Use Information — and we're not legally required to keep it.\n\nFor example, we keep web server logs that record information about a visitor to one of Automattic's websites, like the visitor's IP address, browser type, and operating system, for approximately 30 days. We retain the logs for this period of time in order to, among other things, analyze traffic to Automattic's websites and investigate issues if something goes wrong on one of our websites.\n\nAs another example, when you delete a post, page, or comment from your WordPress.com site, it stays in your Trash folder for thirty days in case you change your mind and would like to restore that content, because starting from scratch is no fun. After the thirty days are up, the deleted content may remain on our backups and caches until purged.\n\nIf you are a job applicant, we will keep your personal data during the application process, and for a certain period thereafter. To determine that period, we take into account a number of factors, like our legal and regulatory obligations (such as equal opportunity obligations) and whether we may need to retain personal data for internal business purposes like analyzing our applicant pool.\n\n",
+          "score": 0.831803276921876
+        },
+        {
+          "id": "privacy-policy-10",
+          "document": "Privacy Policy",
+          "filename": "privacy-policy.md",
+          "section": "Privacy Policy → Information We Collect → Information We Collect Automatically",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Privacy-Policy.md",
+          "text": "#### *Information We Collect Automatically*\n\nWe also collect some information automatically:\n\n-   **Log information:** Like most online service providers, we collect information that web browsers, mobile devices, and servers typically make available, including the browser type, IP address, unique device identifiers, language preference, referring site, the date and time of access, operating system, and mobile network information. We collect log information when you use our Services — for example, when you create or make changes to your website on WordPress.com.\n-   **Transactional information:** When you make a purchase through our Services, we collect information about the transaction, such as product details, purchase price, and the date and location of the transaction. This includes when you purchase something we sell or when you use our Services (like [WooPay](https://woo.app/)) to buy something from a third party.\n-   **Usage information:** We collect information about your usage of our Services. For example, we collect information about the actions that site administrators and users perform on a site using our WordPress.com or Jetpack services — in other words, who did what and when (e.g., [WordPress.com username] deleted \"[title of post]\" at [time/date]). Our [WooCommerce Usage Tracker](https://woocommerce.com/usage-tracking/) also tracks information like your email address, WooCommerce settings, and PHP settings, along with information about your online store, like the aggregate number of orders and customers. We also collect information about what happens when you use our Services (e.g., page views, support document searches at en.support.wordpress.com, features enabled for your website, interactions with our [Admin",
+          "score": 0.7384278474356747
+        },
+        {
+          "id": "privacy-policy-2",
+          "document": "Privacy Policy",
+          "filename": "privacy-policy.md",
+          "section": "Privacy Policy → Who We Are and What This Policy Covers",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Privacy-Policy.md",
+          "text": "### Who We Are and What This Policy Covers\n\nHowdy! We are the folks behind a variety of products and services designed to allow anyone — from bloggers, to photographers, small business owners, and enterprises — to take full advantage of the power and promise of the open web. Our mission is to democratize publishing and commerce so that anyone with a story can tell it, and anyone can turn their great idea into a livelihood. We believe in powering the open internet with code that is open source and are proud to say that the vast majority of our work is available under the General Public License (\"GPL\"). Unlike most other services, because our GPL code is public, you can actually download and take a look at that code to see how it works.\n\nThis Privacy Policy applies to information that we collect about you when you use:\n\n-   Our websites (including automattic.com, wordpress.com, jetpack.com, woo.com, crowdsignal.com, gravatar.com, intensedebate.com, vaultpress.com, akismet.com, simplenote.com, simperium.com, leandomainsearch.com, cloudup.com, longreads.com, atavist.com, mailpoet.com, automatewoo.com, jetpackcrm.com, happy.tools, wpcourses.com, wpscan.com, newspack.pub, and wp.cloud);\n-   Our mobile applications (including the WordPress mobile app for Android and iOS);\n-   Our other Automattic products, services, and features that are available on or through our websites (for example, WordPress.com plans, the Payments feature, the Pay with PayPal block, WordPress.com, Jetpack, WooCommerce Shipping, WooCommerce Tax, Gravatar, the IntenseDebate comment management system, Akismet plans, Simplenote, Simperium, Cloudup, Longreads, MailPoet, AutomateWoo, Jetpack CRM, Happy Tools, WordPress.com Courses, WPScan and Newspack); and\n-   Other users' websites that use our Services,",
+          "score": 0.7320115961833625
+        },
+        {
+          "id": "privacy-policy-15",
+          "document": "Privacy Policy",
+          "filename": "privacy-policy.md",
+          "section": "Privacy Policy → How and Why We Use Information → Purposes for Using Information",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Privacy-Policy.md",
+          "text": "#### *Purposes for Using Information*\n\nWe use information about you for the purposes listed below:\n\n-   **To provide our Services.** For example, to set up and maintain your account, host your website, backup and restore your website, provide customer service, process payments and orders, and verify user information.\n-   **To ensure quality, maintain safety, and improve our Services.** For example, by providing automatic upgrades and new versions of our Services. Or, for example, by monitoring and analyzing how users interact with our Services so we can create new features that we think our users will enjoy and that will help them create and manage websites more efficiently or make our Services easier to use.\n-   **To place and manage ads in our advertising program.** For example, to place ads on our users' sites and some of our own sites as part of our advertising program, and understand ad performance.\n-   **To market our Services and measure, gauge, and improve the effectiveness of our marketing.** For example, by targeting our marketing messages to groups of our users (like those who have a particular plan with us or have been users for a certain length of time), advertising our Services, analyzing the results of our marketing campaigns (like how many people purchased a paid plan after receiving a marketing message), and understanding and forecasting user retention.\n-   **To protect our Services, our users, and the public.** For example, by detecting security incidents; detecting and protecting against malicious, deceptive, fraudulent, or illegal activity; fighting spam; complying with our legal obligations; and protecting the rights and property of Automattic and others, which may result in us, for example, declining a transaction or terminating Services.\n-   **To",
+          "score": 0.731441768761463
+        }
       ],
-      "answerability_match": true,
-      "citation_match": true,
-      "elapsed_ms": 1840,
+      "elapsed_ms": 1180,
       "review_verdict": "pass",
-      "review_notes": "Answers the requested facts and the cited passage supports them."
+      "answerVisibleInUI": true,
+      "answerability_match": true,
+      "sourcesMatchSavedIndex": true,
+      "fourRetrievedPassages": true,
+      "noVectorsSentToBrowser": true,
+      "review_notes": "The cited retention section specifies approximately 30 days for visitor web server logs."
     },
     {
       "id": "Q7",
@@ -203,7 +426,9 @@
       "expected_document": "Privacy Policy",
       "expected_section": "How Long We Keep Information",
       "status": "completed",
-      "actual_answer": "When you delete a post from your WordPress.com site, it stays in your Trash folder for thirty days. After the thirty days are up, it is not immediately removed; the deleted content may remain on backups and caches until purged.",
+      "http_status": 200,
+      "actual_answer": "A deleted WordPress.com post stays in your Trash folder for thirty days. After the thirty days are up, it is not immediately removed; the deleted content may remain on backups and caches until purged.",
+      "actual_answerable": true,
       "sources": [
         {
           "id": "privacy-policy-24",
@@ -215,17 +440,52 @@
           "score": 0.7597300323484872
         }
       ],
-      "retrieved_ids": [
-        "privacy-policy-24",
-        "terms-of-service-35",
-        "privacy-policy-22",
-        "privacy-policy-23"
+      "retrieved": [
+        {
+          "id": "privacy-policy-24",
+          "document": "Privacy Policy",
+          "filename": "privacy-policy.md",
+          "section": "Privacy Policy → How Long We Keep Information",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Privacy-Policy.md",
+          "text": "### How Long We Keep Information\n\nWe generally discard information about you when it's no longer needed for the purposes for which we collect and use it — described in the section above on How and Why We Use Information — and we're not legally required to keep it.\n\nFor example, we keep web server logs that record information about a visitor to one of Automattic's websites, like the visitor's IP address, browser type, and operating system, for approximately 30 days. We retain the logs for this period of time in order to, among other things, analyze traffic to Automattic's websites and investigate issues if something goes wrong on one of our websites.\n\nAs another example, when you delete a post, page, or comment from your WordPress.com site, it stays in your Trash folder for thirty days in case you change your mind and would like to restore that content, because starting from scratch is no fun. After the thirty days are up, the deleted content may remain on our backups and caches until purged.\n\nIf you are a job applicant, we will keep your personal data during the application process, and for a certain period thereafter. To determine that period, we take into account a number of factors, like our legal and regulatory obligations (such as equal opportunity obligations) and whether we may need to retain personal data for internal business purposes like analyzing our applicant pool.\n\n",
+          "score": 0.7597300323484872
+        },
+        {
+          "id": "terms-of-service-35",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "8. Specific Service Terms → g. VaultPress",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "### g. VaultPress\n\nVaultPress is a subscription-based security and backup service for self-hosted WordPress websites. VaultPress will back up your WordPress content (e.g., your WordPress database, plugins, themes, and uploads, as well as some additional files, as described in this [introduction to VaultPress](https://help.vaultpress.com/get-to-know/)) (”VaultPress Content”).\n\n**Access.** If you lose access to your WordPress.com account, you may not be able to access your VaultPress Content.\n\n**License.** By using VaultPress, you grant us access to your website’s servers for the purpose of backing up and securing your VaultPress Content, and restoring files and database information (which may include access details for multiple servers or accounts for each website that we backup). To address security vulnerabilities, we may automatically update your version of VaultPress, or access your website to remove malicious code. We may also manually access your site to troubleshoot your support requests, or if there’s an emergency. You agree that we may scan your website and compile aggregated/anonymized statistics for our internal use to optimize the VaultPress service.\n\nYou also grant us a worldwide, royalty-free, transferable, sub-licensable, and non-exclusive license to use, reproduce, modify, distribute, adapt, and store your VaultPress Content for the purpose of operating and improving our products and Services.\n\n",
+          "score": 0.656641779520603
+        },
+        {
+          "id": "privacy-policy-22",
+          "document": "Privacy Policy",
+          "filename": "privacy-policy.md",
+          "section": "Privacy Policy → Sharing Information → How We Share Information",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Privacy-Policy.md",
+          "text": "you authorize us to do so, like when you connected your site to a social media service through our Publicize feature.\n-   **Aggregated or de-identified information:** We may share information that has been aggregated or de-identified, so that it can no longer reasonably be used to identify you. For instance, we may publish aggregate statistics about the use of our Services, or share a hashed version of your email address to facilitate customized ad campaigns on other platforms.\n-   **Site owners: **If you have a WordPress.com account and interact with another site using our Services, your information may be shared with the administrators of the site. For example, if you leave a comment on a site created on WordPress.com or running Jetpack, your IP address and the email address associated with your WordPress.com account may be shared with the administrator(s) of the site where you left the comment. Or if you make a payment (like via the [Payments feature](https://en.support.wordpress.com/recurring-payments/)) to a site, your public display name, user name, and email address may be shared with the administrator(s) of the site. Or if you follow/subscribe to another WordPress.com site we will share your email address with the site owner.**\\\n    **\n-   **Published support requests:** If you send us a request for assistance (for example, via a support email or one of our other feedback mechanisms), we reserve the right to publish that request in order to clarify or respond to your request, or to help us support other users.\n\n",
+          "score": 0.637413727493913
+        },
+        {
+          "id": "privacy-policy-23",
+          "document": "Privacy Policy",
+          "filename": "privacy-policy.md",
+          "section": "Privacy Policy → Sharing Information → Information Shared Publicly",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Privacy-Policy.md",
+          "text": "#### *Information Shared Publicly*\n\nInformation that you choose to make public is — you guessed it — disclosed publicly.\n\nThat means information like your public profile, posts, other content that you make public on your website, and your \"Likes\" and comments on other websites are all available to others — and we hope they get a lot of views!\n\nFor example, the photo that you upload to your public profile, or a default image if you haven't uploaded one, is your **G**lobally **R**ecognized Avatar, or Gravatar — get it? :) Your Gravatar, along with other public profile information, displays alongside the comments and \"Likes\" that you make on other users' websites while logged in to your WordPress.com account. Your Gravatar and public profile information may also display with your comments, \"Likes,\" and other interactions on websites that use our Gravatar service, if the email address associated with your account is the same email address you use on the other website.\n\nWe also provide a \"Firehose\" stream of public data (like posts and comments) from some sites that use our Services to provide that data to Firehose subscribers, who may view and analyze the content (all subject to our Terms of Service), but do not have rights to re-publish it publicly. Find out more about opting out of the Firehose for [WordPress.com](https://en.support.wordpress.com/settings/privacy-settings/#firehose-settings) and [Jetpack](https://jetpack.com/support/enhanced-distribution/) sites. Public information may also be indexed by search engines or used by third parties.\n\nPlease keep all of this in mind when deciding what you would like to share publicly.\n\n",
+          "score": 0.6362335347890066
+        }
       ],
-      "answerability_match": true,
-      "citation_match": true,
-      "elapsed_ms": 2581,
+      "elapsed_ms": 1156,
       "review_verdict": "pass",
-      "review_notes": "Answers the requested facts and the cited passage supports them."
+      "answerVisibleInUI": true,
+      "answerability_match": true,
+      "sourcesMatchSavedIndex": true,
+      "fourRetrievedPassages": true,
+      "noVectorsSentToBrowser": true,
+      "review_notes": "The cited retention section supports thirty days in Trash and later retention in backups/caches until purged."
     },
     {
       "id": "Q8",
@@ -235,7 +495,9 @@
       "expected_document": "Cookie Policy",
       "expected_section": "Controlling Cookies",
       "status": "completed",
+      "http_status": 200,
       "actual_answer": "Yes, you can set your browser to remove or reject browser cookies before using Automattic's websites, but the drawback is that certain features of Automattic's websites may not function properly without them.",
+      "actual_answerable": true,
       "sources": [
         {
           "id": "privacy-policy-26",
@@ -247,17 +509,52 @@
           "score": 0.7678456353568516
         }
       ],
-      "retrieved_ids": [
-        "privacy-policy-26",
-        "privacy-policy-27",
-        "cookie-policy-4",
-        "cookie-policy-7"
+      "retrieved": [
+        {
+          "id": "privacy-policy-26",
+          "document": "Privacy Policy",
+          "filename": "privacy-policy.md",
+          "section": "Privacy Policy → Choices",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Privacy-Policy.md",
+          "text": "### Choices\n\nYou have several choices available when it comes to information about you:\n\n-   **Limit the information that you provide:** If you have an account with us, you can choose not to provide the optional account information, profile information, and transaction and billing information. Please keep in mind that if you do not provide this information, certain features of our Services — for example, premium themes that carry an additional charge — may not be accessible. If you are a job applicant, and you choose not to provide certain data elements to us, we may not be able to proceed with the recruitment process.\n-   **Limit access to information on your mobile device:** Your mobile device operating system should provide you with the option to discontinue our ability to collect stored information or location information via our mobile apps. If you choose to limit this, you may not be able to use certain features, like geotagging for photographs.\n-   **Opt out of marketing communications:** You may opt out of receiving promotional communications from us. Just follow the instructions in those communications or let us know. If you opt out of promotional communications, we may still send you other communications, like those about your account and legal notices.\n-   **Set your browser to reject cookies:** At this time, Automattic does not respond to \"do not track\" signals across all of our Services. However, you can [usually choose](https://automattic.com/cookies/#controlling-cookies) to set your browser to remove or reject browser cookies before using Automattic's websites, with the drawback that certain features of Automattic's websites may not function properly without the aid of cookies.\n-   **Opt out of our internal analytics program:** You can do this through",
+          "score": 0.7678456353568516
+        },
+        {
+          "id": "privacy-policy-27",
+          "document": "Privacy Policy",
+          "filename": "privacy-policy.md",
+          "section": "Privacy Policy → Choices",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Privacy-Policy.md",
+          "text": "sites, with the drawback that certain features of Automattic's websites may not function properly without the aid of cookies.\n-   **Opt out of our internal analytics program:** You can do this through your user settings. By opting out, you will stop sharing information with our analytics tool about events or actions that happen after the opt-out, while you're logged in to your WordPress.com account. For more information, please see our [Cookie Policy](https://automattic.com/cookies/#our-internal-analytics-tool).\n-   **Close your account:** While we'd be very sad to see you go, you can close your account if you no longer want to use our Services. ([Here](https://en.support.wordpress.com/close-account/) are account closure instructions for WordPress.com accounts.) Please keep in mind that we may continue to retain your information after closing your account, as described in How Long We Keep Information above — for example, when that information is reasonably needed to comply with (or demonstrate our compliance with) legal obligations such as law enforcement requests, or reasonably needed for our legitimate business interests.\n\n",
+          "score": 0.7546661506751772
+        },
+        {
+          "id": "cookie-policy-4",
+          "document": "Cookie Policy",
+          "filename": "cookie-policy.md",
+          "section": "Where we place cookies",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Cookie-Policy.md",
+          "text": "### **Where we place cookies**\n\nWe set cookies in a number of different locations across our services. These include:\n\n*   On our websites (including automattic.com, wordpress.com, vip.wordpress.com, jetpack.com, woocommerce.com, crowdsignal.com, gravatar.com, intensedebate.com, vaultpress.com, akismet.com, simplenote.com, simperium.com, leandomainsearch.com, cloudup.com, longreads.com, and happy.tools).\n*   In the administrative dashboards of our websites, such as Calypso and wp-admin.\n*   On sites we host for our users.\n*   On sites that use our plugins (e.g. Jetpack).\n\n",
+          "score": 0.753886585677115
+        },
+        {
+          "id": "cookie-policy-7",
+          "document": "Cookie Policy",
+          "filename": "cookie-policy.md",
+          "section": "Examples",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Cookie-Policy.md",
+          "text": "### Examples\n\nBelow are examples of the cookies set by Automattic, with explanations of their purpose. Some of these cookies are set across our whole network, whereas some are specific to individual services (e.g. WordPress.com, Longreads, etc). Please note that this is not an exhaustive list, but rather aims to be representative. Information about cookies that may be set by third parties, such as our ads partners, is below. Additionally, we occasionally set referrer cookies on Jetpack connected sites, using WooCommerce.\n\nIn addition, people and companies that use our services to publish or host their own sites may place additional cookies. We provide more information on these cookies below.\n\n",
+          "score": 0.7393921650494368
+        }
       ],
-      "answerability_match": true,
-      "citation_match": false,
-      "elapsed_ms": 1639,
+      "elapsed_ms": 1061,
       "review_verdict": "pass",
-      "review_notes": "Supported by Privacy Policy → Choices, which explicitly says browser cookies can be removed/rejected and some features may fail. The automated check expects Cookie Policy → Controlling Cookies, so its citation_match is false even though the actual citation is valid."
+      "answerVisibleInUI": true,
+      "answerability_match": true,
+      "sourcesMatchSavedIndex": true,
+      "fourRetrievedPassages": true,
+      "noVectorsSentToBrowser": true,
+      "review_notes": "The Privacy Policy Choices passage directly supports browser cookie controls and the feature caveat. It is a valid alternative to the expected Cookie Policy passage."
     },
     {
       "id": "Q9",
@@ -267,19 +564,56 @@
       "expected_document": null,
       "expected_section": null,
       "status": "completed",
+      "http_status": 200,
       "actual_answer": "I don't know based on the provided documents.",
+      "actual_answerable": false,
       "sources": [],
-      "retrieved_ids": [
-        "terms-of-service-14",
-        "terms-of-service-16",
-        "terms-of-service-15",
-        "terms-of-service-42"
+      "retrieved": [
+        {
+          "id": "terms-of-service-14",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "5. Fees, Payment, and Renewal → a. Automattic Fees",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "for Services that were previously free, or remove or update features or functionality that were previously included in the fees. If you don’t agree with the changes, you must cancel your Paid Service.\n\n**Refunds.** We may have a refund policy for some of our Paid Services, and we’ll also provide refunds if required by law. In all other cases, there are no refunds and all payments are final.\n\nWe may have a “no-show policy” for some Paid Services that require your participation. This means that if you don’t show up for, don’t participate in, or are late for a scheduled session, you’ll still be charged for the Paid Service and won’t be entitled to a refund.\n\n*European Users:* \n\nYou have the right to withdraw from the transaction within fourteen (14) days from the date of the purchase without giving any reason as long as your purchase was not of downloadable content or of a customized nature, and (i) the service has not been fully performed, or (ii) subject to other limitations as permitted by law. For digital content, you agree that any purchase of digital content will be made available to you immediately and as a result you waive any right of withdrawal to such content.",
+          "score": 0.6616862161396697
+        },
+        {
+          "id": "terms-of-service-16",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "5. Fees, Payment, and Renewal → b. Fees Collected by Website Owners",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "### b. Fees Collected by Website Owners\n\n**Fees Paid to Third-Party Websites or Website Owners.** Website owners can sell items (goods, content, services, etc.), offer subscriptions for their websites at specific price points and intervals, or simply collect payments. We’re not involved in a website’s subscription details or store operations (including the quality, timing, pricing, or legality of what may or may not be included in exchange for payment, or any goods or services purchased). If you buy items or subscriptions from a website, you’re making the purchase directly from the website owner, and they’re solely responsible for the items sold. Please contact the website owner if you have any questions or complaints.\n\n**Automatic Renewal. **Any recurring payments you make to a WordPress.com website owner (like a [website subscription](https://wordpress.com/support/recurring-payments/)) are automatically renewed. This means that unless you or the website owner cancels your website subscription before the end of the subscription period, it’ll automatically renew and your payment method will be charged. For example, if you select an annually renewing website subscription, you’ll be automatically charged once each year until the subscription is canceled. You can view the renewal dates or cancel your website subscriptions on your [Purchases page](https://wordpress.com/me/purchases/other).\n\n**Refunds.** We’re not responsible for refunding fees paid to a website owner because those transactions are between website owners and their users. If you’d like to request a refund, please contact the website owner. If you have a complaint regarding a website owner, you can [contact us](https://en.wordpress.com/abuse/).\n\n",
+          "score": 0.6511508156258676
+        },
+        {
+          "id": "terms-of-service-15",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "5. Fees, Payment, and Renewal → a. Automattic Fees",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "ns as permitted by law. For digital content, you agree that any purchase of digital content will be made available to you immediately and as a result you waive any right of withdrawal to such content.\n\nIf you cancel this contract, we will reimburse you all payments we have received from you, including delivery costs (with the exception of additional costs resulting from the fact that you have chosen a type of delivery other than the most favorable standard delivery offered by us), without undue delay and no later than within fourteen days from the day on which we received the notification of your cancellation of this contract. For this repayment, we will use the same means of payment that you used for the original transaction, unless expressly agreed otherwise with you; you will not be charged for this repayment. If we have already begun our services during the withdrawal period, you will pay us a prorated amount corresponding to the services already provided up to the time you notify us of the exercise of the withdrawal right compared to the total scope of the services provided for in the contract. If you cancel your contract with us, you will refrain from using the digital content or digital services or making them available to third parties.\n\nYou may exercise your right to withdrawal by sending a clear, written request to: Aut O’Mattic A8C Ireland Ltd., Grand Canal Dock, 25 Herbert Pl, Dublin, D02 AY86 Ireland or by using [this model form](https://wordpress.com/support/right-to-withdrawal/).\n\n",
+          "score": 0.6338563710634056
+        },
+        {
+          "id": "terms-of-service-42",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "8. Specific Service Terms → j. Ecommerce Services",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "e) to your subscribers and customers without notice to you if we determine (in our sole discretion) that your use violates the Agreement, or if a payment processor or regulatory authority requires it.\n\n**Fees and Negative Balances.** In some cases, you pay us fees relating to the Ecommerce Services you use. For example, the fee for the Payments feature is a [percentage](https://wordpress.com/support/wordpress-editor/blocks/payments/#related-fees) (which depends on your plan) of the revenue your website generates through the Payment feature, and when you use the feature, you authorize Stripe to direct payment of that percentage to us. As another example, if you use WooPayments, there are [transaction fees and dispute fees](https://docs.woocommerce.com/document/payments/faq/fees/). Please note that we have no obligation to reimburse or refund these revenue-based fees when you issue refunds to your subscribers or customers.\n\nIf you have a negative account balance (for example because of fraud, chargebacks, or other operational issues) or we’re obligated to pay or collect any fees relating to your ecommerce activities or your use of Ecommerce Services, you’re responsible for those losses and fees, and we may collect payment for those losses and fees.",
+          "score": 0.6270129036625989
+        }
       ],
-      "answerability_match": true,
-      "citation_match": true,
-      "elapsed_ms": 1860,
+      "elapsed_ms": 12146,
       "review_verdict": "pass",
-      "review_notes": "Correctly abstains without a fabricated answer or supporting citation."
+      "answerVisibleInUI": true,
+      "answerability_match": true,
+      "sourcesMatchSavedIndex": true,
+      "fourRetrievedPassages": true,
+      "noVectorsSentToBrowser": true,
+      "review_notes": "Correct document-based abstention without supporting citations."
     },
     {
       "id": "Q10",
@@ -289,22 +623,63 @@
       "expected_document": null,
       "expected_section": null,
       "status": "completed",
+      "http_status": 200,
       "actual_answer": "I don't know based on the provided documents.",
+      "actual_answerable": false,
       "sources": [],
-      "retrieved_ids": [
-        "terms-of-service-11",
-        "privacy-policy-7",
-        "terms-of-service-13",
-        "terms-of-service-21"
+      "retrieved": [
+        {
+          "id": "terms-of-service-11",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "5. Fees, Payment, and Renewal → a. Automattic Fees",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "### a. Automattic Fees\n\n**Fees for Paid Services.** Some of our Services are offered for a fee, like certain [WordPress.com plans](https://wordpress.com/pricing/) or Woo themes or extensions (collectively, “Paid Services”). This section applies to any purchases of Paid Services.\n\nBy using a Paid Service, you agree to pay the specified fees. Depending on the Paid Service, there may be different kinds of fees, like some that are one-time, recurring, revenue-based, usage-based, or based on an advertising campaign budget that you set. For recurring fees (AKA subscriptions), your subscription begins on your purchase date, and we’ll bill or charge you in the automatically-renewing interval (such as monthly, annually, or biennially) you select, on a pre-pay basis until you cancel, which you can do at any time by contacting the relevant support team. For revenue-based fees — such as [fees for the Payments feature](https://wordpress.com/support/wordpress-editor/blocks/payments/#related-fees) — you pay us a percentage of the revenue your website generates. Revenue-based fees are ongoing. Where we invoice you for any Paid Services, you will pay all amounts due within the required time frame.\n\n**Taxes.** To the extent permitted by law, or unless explicitly stated otherwise, all fees do not include applicable federal, provincial, state, local or other governmental sales, value-added, goods and services, harmonized or other taxes, fees, or charges (”Taxes”). You’re responsible for paying all applicable Taxes relating to your use of our Services, your payments, or your purchases. If we’re obligated to pay or collect Taxes on the fees you’ve paid or will pay, you’re responsible for those Taxes, and we may collect payment from you.",
+          "score": 0.6796344038838442
+        },
+        {
+          "id": "privacy-policy-7",
+          "document": "Privacy Policy",
+          "filename": "privacy-policy.md",
+          "section": "Privacy Policy → Information We Collect → Information You Provide to Us",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Privacy-Policy.md",
+          "text": "to a person or business through their WordPress.com site (for example via the Payments feature or the Pay with PayPal block), you'll provide additional personal and payment information like your name, credit card information, and contact information. We also keep a record of the purchases you've made. If you use our Ecommerce Services (including [Store on WordPress.com,](https://en.support.wordpress.com/store/) WooCommerce Shipping, WooCommerce Tax, and WooPayments), you'll have to create a WordPress.com account or connect an existing account and, for some Services, provide your site URL. You may also provide us with financial details to set up a payments integration, like the email address for your Stripe or PayPal account or your bank account information. Additionally, if you use [WooPay](https://woo.app/) to make purchases on other sites, we will store the contact information and payment information you provide to that service. And if you participate in a revenue sharing opportunity for your site, like [WordAds](https://wordads.co/), you'll provide some additional information — for example, a tax ID or other identifier so we can process payments to you.\n-   **Business Profile: **Some of our products collect additional information from you as part of creating a user/customer profile. For example, if you are a Jetpack CRM customer we may add you to our customer relationship database (powered by Jetpack CRM!) using information you provide us including your name, your employer, your job title or role, your contact information, and your communications with us. If you are a Happy Tools user, we use information you provide us like your timezone and location information, your company and team information, and your contact information, to set up your account and power the",
+          "score": 0.6626906630569739
+        },
+        {
+          "id": "terms-of-service-13",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "5. Fees, Payment, and Renewal → a. Automattic Fees",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "ed on your billing country. If we offer a market-specific price in a particular country or region, that price applies only for the applicable promotional period or for as long as we make it available.\n\n**Automatic Renewal. **By enrolling in a subscription, you authorize us to automatically charge the then-applicable fees and Taxes for each subsequent subscription period until the subscription is canceled. If you received a discount, used a coupon code, or subscribed during a free trial or promotion, your subscription will automatically renew for the full price of the subscription at the end of the discount period. This means that unless you cancel a subscription, it’ll automatically renew and we’ll charge your payment method(s). You must cancel at least one month before the scheduled end date of any annual subscription and at least 24 hours before the end of any shorter subscription period. The date for the automatic renewal is based on the date of the original purchase and cannot be changed. If you’ve purchased access to multiple services, you may have multiple renewal dates.\n\nYou can view your renewal date(s), cancel, or manage subscriptions in your settings (for example, [WordPress.com’s Manage Purchases page](https://wordpress.com/me/purchases) or [Woo’s My Subscriptions page](http://woocommerce.com/my-account/my-subscriptions/)) or by contacting the support team.\n\n**Fees and Changes.** We may change our fees at any time in accordance with these Terms and requirements under applicable law. This means that we may change our fees going forward, start charging fees for Services that were previously free, or remove or update features or functionality that were previously included in the fees. If you don’t agree with the changes, you must cancel your Paid Service.",
+          "score": 0.655362397527581
+        },
+        {
+          "id": "terms-of-service-21",
+          "document": "Terms of Service",
+          "filename": "terms-of-service.md",
+          "section": "8. Specific Service Terms → a. WordPress.com Websites and Accounts",
+          "url": "https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md",
+          "text": "### a. WordPress.com Websites and Accounts\n\n[WordPress.com](https://wordpress.com/) enables you to create beautiful websites and blogs, and we would love for you to use it. A WordPress.com account also allows you to sign into some of our other Services.\n\nWordPress.com’s basic service is free, and we offer [paid plans](https://wordpress.com/pricing/) that add advanced features like a custom domain name, extra storage, and access to premium themes. We don’t own your content, and you retain all ownership rights you have in the content you post to your website. However, be responsible in what you publish. In particular, make sure that nothing prohibited (like spam, viruses, or serious threats of violence) appears on your website.\n\nIf you find a WordPress.com website that you believe violates these Terms, please [let us know](https://en.support.wordpress.com/report-blogs/).\n\n**Your WordPress.com Website’s URL.** If you create a website on WordPress.com, you get free use of an Automattic-owned subdomain, like yourgroovysite.wordpress.com or mollys.food.blog. You must not engage in “domain squatting,” claim an unreasonable number of subdomains (as determined by us), or sell access to any subdomains.",
+          "score": 0.6449058948786107
+        }
       ],
-      "answerability_match": true,
-      "citation_match": true,
-      "elapsed_ms": 2243,
+      "elapsed_ms": 11803,
       "review_verdict": "pass",
-      "review_notes": "Correctly abstains without a fabricated answer or supporting citation."
+      "answerVisibleInUI": true,
+      "answerability_match": true,
+      "sourcesMatchSavedIndex": true,
+      "fourRetrievedPassages": true,
+      "noVectorsSentToBrowser": true,
+      "review_notes": "Correct document-based abstention without supporting citations."
     }
   ],
-  "reviewedBy": "Codex-assisted review of actual answers against expected answers and cited passages; applicant should verify before submission.",
+  "browserErrors": [],
+  "homepageStatus": 200,
+  "mobileHorizontalOverflow": false,
+  "mobileNavigationWorks": true,
+  "reviewedBy": "Codex-assisted review of the actual browser responses against expected facts and the cited excerpts; applicant review remains useful.",
   "summary": {
     "completed": 10,
     "review_pass": 9,

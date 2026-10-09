@@ -4,6 +4,10 @@ A small React chat app that answers questions from three public Automattic docum
 
 **[Try the demo](https://e-bibil-assistant.vercel.app)** · [Read the code](https://github.com/mitul-bhatia/E-Bibil_assignment)
 
+| Source documents | Saved embeddings | Dimensions | Retrieved per question |
+| :---: | :---: | :---: | :---: |
+| **3** | **142** | **768** | **Top 4** |
+
 ![Dark chat interface with sample questions and a document library](public/demo-desktop.png)
 
 ## Run locally
@@ -31,6 +35,11 @@ The default answer model is `gemini-3.5-flash-lite`. Google lists a [free tier](
 
 Next.js provides both the React interface and one server endpoint. A JSON file holds the vector index. There is no separate backend deployment or database service.
 
+![Visual architecture: prepare source embeddings once, retrieve the top four passages for each question, and return a cited answer](public/rag-flow.svg)
+
+<details>
+<summary>Editable architecture diagram</summary>
+
 ```mermaid
 flowchart TD
   subgraph Once[Prepare once, locally]
@@ -49,6 +58,8 @@ flowchart TD
   end
 ```
 
+</details>
+
 Start reading the code in this order:
 
 | File | What it does |
@@ -59,25 +70,31 @@ Start reading the code in this order:
 | `app/Chat.jsx` | Chat interface, examples, answer and source display |
 | `lib/chunk.js` | Split Markdown into source-preserving passages |
 | `scripts/prepare.mjs` | Generate and save the document vectors once |
-| `scripts/evaluate.mjs` | Run the ten questions and save actual results |
+| `data/index.json` | Prepared vectors, passage text and citation metadata |
 
 ## Documents and sources
 
 The knowledge set is the original Automattic Markdown snapshot from [legalmattic revision 99aa482](https://github.com/Automattic/legalmattic/tree/99aa482bf6b602645bcb50c47a68db48a76dbce0), captured on 9 October 2026.
 
-| Document | Coverage |
-| --- | --- |
-| Terms of Service | Accounts, age requirements, payments, subscriptions and refunds |
-| Privacy Policy | Collection, retention, privacy rights and security |
-| Cookie Policy | Cookie purposes and visitor controls |
+These links open the **exact original documents used to create the embeddings**, rather than a policy page that may change later:
 
-`data/sources.json` records original URLs, revision and SHA-256 hashes. Documents are by Automattic under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/); the licence is included in `documents/LICENSE.txt`. Linked pages are not indexed. These are Markdown documents, so citations show a document and section rather than a PDF page.
+| Document — Automattic original | Snapshot in this repo | Passages | Coverage |
+| --- | --- | ---: | --- |
+| [Terms of Service](https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md) | [terms-of-service.md](documents/terms-of-service.md) | 71 | Accounts, age, subscriptions, payments and refunds |
+| [Privacy Policy](https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Privacy-Policy.md) | [privacy-policy.md](documents/privacy-policy.md) | 47 | Collection, retention, rights and security |
+| [Cookie Policy](https://github.com/Automattic/legalmattic/blob/99aa482bf6b602645bcb50c47a68db48a76dbce0/Cookie-Policy.md) | [cookie-policy.md](documents/cookie-policy.md) | 24 | Cookie purposes and visitor controls |
+
+For direct downloads: [Terms Markdown](https://raw.githubusercontent.com/Automattic/legalmattic/99aa482bf6b602645bcb50c47a68db48a76dbce0/Terms%20of%20Service/WordPress.com/EN-Terms-of-Service.md) · [Privacy Markdown](https://raw.githubusercontent.com/Automattic/legalmattic/99aa482bf6b602645bcb50c47a68db48a76dbce0/Privacy-Policy.md) · [Cookie Markdown](https://raw.githubusercontent.com/Automattic/legalmattic/99aa482bf6b602645bcb50c47a68db48a76dbce0/Cookie-Policy.md).
+
+[data/sources.json](data/sources.json) records original URLs, revision and SHA-256 hashes. Documents are by [Automattic](https://github.com/Automattic/legalmattic) under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/); the licence is included in [documents/LICENSE.txt](documents/LICENSE.txt). Linked pages are not indexed. These are Markdown documents, so citations show a document and section rather than a PDF page.
 
 ## Chunking and retrieval
 
 Chunking is deterministic: recognize Markdown headings, split long sections at paragraph or word boundaries, cap passages at 1,800 characters, and overlap up to 200 characters inside the same section. This preserves nearby context without asking an LLM to preprocess the documents. Passages are exact slices of the original text.
 
 The prepared index has **142 passages** and **768-dimensional `gemini-embedding-2` vectors**. Document embeddings include their title and section. Question embeddings use the question-answering task prefix documented by [Google](https://ai.google.dev/gemini-api/docs/embeddings).
+
+**Vector store verified:** all 142 passages have a unique, finite, normalized vector; none are missing. Indexed passage text and document hashes match the original snapshot. The saved index is approximately 2.40 MiB. See [data/index-summary.json](data/index-summary.json) for the recorded integrity check. The full [data/index.json](data/index.json) is bundled with the server endpoint; the browser receives passage text and sources, without the vector arrays.
 
 Both vectors are normalized, so their dot product is cosine similarity. Sort the scores and take the top four. For this small corpus, a direct scan is easy to inspect and requires no FAISS installation or hosted vector database. Scores rank evidence; they are not confidence percentages or an answerability threshold.
 
@@ -91,21 +108,29 @@ npm run prepare:index
 
 The script verifies source hashes, saves completed embeddings in an ignored cache, and replaces the index only after every document succeeds. Update the manifest when intentionally changing a source. Preparation is not part of the Vercel build.
 
-## Demo and evaluation
+## Visual walkthrough
 
 Sample questions are stored in `data/examples.json` and shipped with the app. Click one to submit it. Each turn is an independent question; previous chat messages are not sent to the model.
 
+**1. Ask a question and open the supporting source.** The title, section, original link and exact excerpt make the answer inspectable.
+
 ![Real answer with its supporting Privacy Policy passage](public/demo-answer.png)
 
-The assessment test set is `data/eval_questions.json`: eight answerable questions and two unanswerable questions. Expected answers are never used by the RAG backend.
+**2. Expand “How this answer was found”.** See the four retrieved passages and the time taken. A citation identifies evidence; it is not a confidence percentage.
 
-```bash
-npm run evaluate
-```
+![Live retrieval view showing the top four passages and how they were used](public/demo-retrieval.png)
 
-Actual answers, citations, answerability checks, timing and review notes are saved in `data/eval_results.json`. The script waits 15 seconds between questions to reduce quota failures. Automated section matches are not an accuracy score; review `actual_answer` against `expected_answer` and the cited passage.
+**3. Try an unknown question, including on mobile.** Private refund dates and current prices are outside these documents, so the app abstains and shows no supporting citations.
 
-**Recorded live run:** 10/10 questions completed with `gemini-3.5-flash-lite`. Codex-assisted review marked 9 pass and 1 fail against the expected answers and actual cited passages. Both unanswerable questions correctly abstained. This describes this small test set, not general accuracy; the applicant should also review the results.
+<p align="center"><img src="public/demo-unknown.png" alt="Live mobile chat correctly declining to invent the current Business plan price" width="300" /></p>
+
+## Verify through the live demo
+
+Open [the deployed chat](https://e-bibil-assistant.vercel.app), enter the questions from [data/eval_questions.json](data/eval_questions.json), and inspect the actual answers and excerpts. These are eight answerable questions and two unanswerable questions. Expected answers are static review notes and are never used by the RAG backend.
+
+The repository contains no automated test suite or evaluation runner. Verification is through the deployed UI. [data/eval_results.json](data/eval_results.json) contains the actual recorded browser responses, citations, timings and Codex-assisted review notes; it is evidence, not executable test code.
+
+**Recorded browser run:** 10/10 questions completed with `gemini-3.5-flash-lite`. Review marked 9 pass and 1 fail against the expected facts and cited passages. Both unanswerable questions correctly abstained. Each response showed four retrieved passages, and returned source metadata matched the saved index. Desktop and mobile had no browser runtime errors or horizontal overflow. This describes this small set, not general accuracy; the applicant should also review the results.
 
 | ID | Question | Expected key facts | Actual result / review |
 | --- | --- | --- | --- |
@@ -120,11 +145,7 @@ Actual answers, citations, answerability checks, timing and review notes are sav
 | Q9 | My refund arrival date | Documents cannot answer | Correct abstention — pass |
 | Q10 | Current Business price in INR | Documents cannot answer | Correct abstention — pass |
 
-Q1 is a generation completeness miss: retrieval found the full age section, including the supervision condition. A next improvement is to include all relevant policy qualifications while keeping answers short. Q8 exposes a limitation of the automated evaluation: the Privacy Policy also states the cookie rule, so an expected-document match can flag a valid citation as a miss. Review notes explain both cases.
-
-An earlier `gemini-3.8-flash` run completed only 4/10 questions because of provider/quota failures; its unchanged report is saved in `data/eval_previous.json`. Flash-Lite was selected after a live abstention test returned in about 2.5 seconds, then the entire same test set was rerun. No expected answers are substituted for model outputs.
-
-![Real unanswerable response in the mobile interface](public/demo-unknown.png)
+Q1 is a generation completeness miss: retrieval found the full age section, including the supervision condition. A next improvement is to include all relevant policy qualifications while keeping answers short. Q8 has a valid alternative source: the Privacy Policy also states the cookie rule, although the review question names the Cookie Policy. No expected answers are substituted for model outputs.
 
 ## Deploy to Vercel
 
@@ -135,14 +156,7 @@ An earlier `gemini-3.8-flash` run completed only 4/10 questions because of provi
 
 `npm run build` builds both the UI and endpoint. No Python, PyTorch, model download or separate service is needed on Vercel.
 
-## Checks, limits and next steps
-
-```bash
-npm test
-npm run build
-```
-
-Five offline tests check source-preserving chunking, overlap, cosine ranking, citation restrictions and API input validation. They do not establish live model accuracy.
+## Limits and next steps
 
 - Policies are a fixed snapshot, not current prices or private account data.
 - Top-four retrieval can miss evidence or conditions spread across passages.
@@ -153,6 +167,6 @@ Five offline tests check source-preserving chunking, overlap, cosine ranking, ci
 
 ## AI tools and time spent
 
-OpenAI Codex assisted with document research, the original Python prototype, this JavaScript simplification, UI, tests and deployment. Google Gemini Embedding 2 generated the saved document vectors; Gemini Flash produces runtime answers. The applicant should understand and be able to change each part during the interview.
+OpenAI Codex assisted with document research, the original Python prototype, this JavaScript simplification, UI, browser verification, documentation and deployment. Google Gemini Embedding 2 generated the saved document vectors; Gemini Flash-Lite produces runtime answers. The applicant should understand and be able to change each part during the interview.
 
-Estimated assisted session time: about 1 hour 40 minutes, from approximately 16:16 to 17:56 IST on 9 October 2026. This includes the original prototype review, JavaScript migration, document embeddings, UI, tests and deployment checks. This is a session estimate, not a claim of independent applicant effort.
+Estimated assisted-session elapsed time: about 3 hours 20 minutes, from approximately 16:16 to 19:35 IST on 9 October 2026, including pauses and provider waiting. The session covered the original prototype review, JavaScript migration, embeddings, UI, live browser verification, documentation and deployment checks. This is a session estimate, not a claim of independent applicant effort.

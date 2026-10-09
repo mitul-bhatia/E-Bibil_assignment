@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-10-09T13:00:20.374Z",
+  "model": "gemini-embedding-2",
+  "dimensions": 768,
+  "preparedAt": "2026-10-09T12:10:06.383Z",
+  "passages": 142,
+  "uniqueIds": 142,
+  "uniqueVectors": 142,
+  "missingEmbeddings": 0,
+  "allVectorsFiniteAndNormalized": true,
+  "allChunksMatchSourceFiles": true,
+  "bytes": 2521123,
+  "documents": [
+    {
+      "document": "Terms of Service",
+      "chunks": 71,
+      "hashMatches": true
+    },
+    {
+      "document": "Privacy Policy",
+      "chunks": 47,
+      "hashMatches": true
+    },
+    {
+      "document": "Cookie Policy",
+      "chunks": 24,
+      "hashMatches": true
+    }
+  ]
+}
